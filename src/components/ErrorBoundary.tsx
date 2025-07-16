@@ -17,11 +17,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: unknown) {
-    console.log(
-      error,
-      // Warning: `captureOwnerStack` is not available in production.
-      React.captureOwnerStack()
-    );
+    console.log(error, React.captureOwnerStack());
   }
 
   render() {

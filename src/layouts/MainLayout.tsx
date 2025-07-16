@@ -12,7 +12,7 @@ export class MainLayout extends React.Component<Props> {
       <div className={'bg-neutral-100 text-xl font-mono min-h-dvh'}>
         <header
           className={
-            'flex justify-center p-8 border-b-2 backdrop-blur fixed w-full z-10'
+            'flex flex-wrap items-center gap-6 justify-center p-8 border-b-2 backdrop-blur fixed w-full z-10'
           }
         >
           {this.props.headerContent}

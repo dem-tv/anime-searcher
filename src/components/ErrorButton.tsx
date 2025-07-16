@@ -23,6 +23,10 @@ export class ErrorButton extends React.Component<object, State> {
   }
 
   render() {
+    if (this.state.error) {
+      throw Error('EXPLOOOOOOOODE!!!');
+    }
+
     return <Button onClick={this.onExplode}>Explode!</Button>;
   }
 }

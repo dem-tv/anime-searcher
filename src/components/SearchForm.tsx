@@ -51,7 +51,10 @@ export class SearchForm extends React.Component<Props, State> {
 
   render() {
     return (
-      <form className={'flex gap-4'} onSubmit={this.onSubmit}>
+      <form
+        className={'flex gap-4 flex-wrap justify-center'}
+        onSubmit={this.onSubmit}
+      >
         <Input value={this.state.search} setValue={this.onSearchChange} />
         <Button type="submit">Explode anime!</Button>
       </form>
