@@ -1,32 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
 import { Button } from '../Button/Button.tsx';
 
-type State = {
-  error: boolean;
-};
+export function ErrorButton() {
+  const [error, setError] = useState(false);
 
-export class ErrorButton extends React.Component<object, State> {
-  constructor(props: object) {
-    super(props);
-
-    this.onExplode = this.onExplode.bind(this);
+  function onExplode() {
+    setError(true);
   }
 
-  state: State = {
-    error: false,
-  };
-
-  onExplode() {
-    this.setState({
-      error: true,
-    });
+  if (error) {
+    throw Error('EXPLOOOOOOOODE!!!');
   }
 
-  render() {
-    if (this.state.error) {
-      throw Error('EXPLOOOOOOOODE!!!');
-    }
-
-    return <Button onClick={this.onExplode}>Explode!</Button>;
-  }
+  return <Button onClick={onExplode}>Explode!</Button>;
 }

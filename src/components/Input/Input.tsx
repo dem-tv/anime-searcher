@@ -7,34 +7,24 @@ type Props = {
   name: string;
 };
 
-export class Input extends React.Component<Props> {
-  constructor(props: Props) {
-    super(props);
+export function Input(props: Props) {
+  function onInput(event: React.ChangeEvent) {
+    const { value } = event.target as HTMLInputElement;
 
-    this.onInput = this.onInput.bind(this);
+    props.setValue(value);
   }
 
-  onInput(e: React.ChangeEvent) {
-    const { value } = e.target as HTMLInputElement;
-
-    this.props.setValue(value);
-  }
-
-  render() {
-    return (
-      <div>
-        <input
-          aria-label={this.props.label}
-          name={this.props.name}
-          type="text"
-          id={this.props.name}
-          value={this.props.value}
-          onChange={this.onInput}
-          className={
-            'min-h-10 bg-white max-w-96 border-2 border-gray-300 rounded outline-none hover:border-gray-400 focus-visible:border-gray-900 px-4 p-y2'
-          }
-        />
-      </div>
-    );
-  }
+  return (
+    <input
+      aria-label={props.label}
+      name={props.name}
+      type="text"
+      id={props.name}
+      value={props.value}
+      onChange={onInput}
+      className={
+        'min-h-10 bg-white max-w-96 border-2 border-gray-300 rounded outline-none hover:border-gray-400 focus-visible:border-gray-900 px-4 p-y2'
+      }
+    />
+  );
 }

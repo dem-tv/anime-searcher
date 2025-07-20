@@ -1,6 +1,6 @@
-import { API_HOST, DEFAULT_FETCH_OPTIONS } from './constants.ts';
-import type { Anime, PageResponse } from './types/anime.types.ts';
-import type { APIError } from './types/error.types.ts';
+import { API_HOST, DEFAULT_FETCH_OPTIONS } from '../constants.ts';
+import type { Anime, PageResponse } from '../types/anime.types.ts';
+import type { APIError } from '../types/error.types.ts';
 
 export const listQuery = `query Media(
     $search: String
