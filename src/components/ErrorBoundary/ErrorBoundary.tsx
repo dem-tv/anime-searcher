@@ -16,7 +16,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   componentDidCatch(error: unknown) {
-    console.log(error, React.captureOwnerStack());
+    console.log(error);
   }
 
   render() {
