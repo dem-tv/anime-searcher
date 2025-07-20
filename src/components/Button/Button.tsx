@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { type HTMLAttributes } from 'react';
 
 type Props = {
   onClick?: () => void;
   children: React.ReactNode;
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-};
+} & HTMLAttributes<HTMLButtonElement>;
 
 export class Button extends React.Component<Props> {
-  public render() {
+  render() {
     return (
       <button
         className={

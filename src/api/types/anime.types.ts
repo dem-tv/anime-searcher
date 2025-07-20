@@ -18,7 +18,7 @@ export type Anime = {
   episodes: number;
   duration: number;
   title: {
-    english: string;
+    english: string | null;
     native: string;
   };
   genres: string[];

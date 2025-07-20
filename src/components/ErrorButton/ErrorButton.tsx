@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from './Button.tsx';
+import { Button } from '../Button/Button.tsx';
 
 type State = {
   error: boolean;

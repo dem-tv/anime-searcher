@@ -1,8 +1,8 @@
 import React from 'react';
-import { ErrorButton } from '../components/ErrorButton.tsx';
+import { ErrorButton } from '../../components/ErrorButton/ErrorButton.tsx';
 
 type Props = {
-  headerContent: React.ReactNode;
+  headerContent?: React.ReactNode;
   children: React.ReactNode | undefined;
 };
 

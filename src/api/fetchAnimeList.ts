@@ -1,45 +1,46 @@
 import { API_HOST, DEFAULT_FETCH_OPTIONS } from './constants.ts';
 import type { Anime, PageResponse } from './types/anime.types.ts';
+import type { APIError } from './types/error.types.ts';
 
-const listQuery = `query Media(
-  $search: String
-  $type: MediaType
-  $isAdult: Boolean
-  $perPage: Int
-  $sort: [MediaSort]
-) {
-  Page(perPage: $perPage) {
-    pageInfo {
-      currentPage
-      hasNextPage
-      lastPage
-      perPage
-      total
-    }
-    media(search: $search, type: $type, isAdult: $isAdult, sort: $sort) {
-      bannerImage
-      chapters
-      description
-      episodes
-      duration
-      title {
-        english
-        native
+export const listQuery = `query Media(
+    $search: String
+    $type: MediaType
+    $isAdult: Boolean
+    $perPage: Int
+    $sort: [MediaSort]
+  ) {
+    Page(perPage: $perPage) {
+      pageInfo {
+        currentPage
+        hasNextPage
+        lastPage
+        perPage
+        total
       }
-      genres
-      startDate {
-        day
-        month
-        year
-      }
-      endDate {
-        day
-        month
-        year
+      media(search: $search, type: $type, isAdult: $isAdult, sort: $sort) {
+        bannerImage
+        chapters
+        description
+        episodes
+        duration
+        title {
+          english
+          native
+        }
+        genres
+        startDate {
+          day
+          month
+          year
+        }
+        endDate {
+          day
+          month
+          year
+        }
       }
     }
   }
-}
 `;
 
 export async function fetchAnimeList(search: string) {
@@ -55,7 +56,11 @@ export async function fetchAnimeList(search: string) {
     body: JSON.stringify({ query: listQuery, variables }),
   });
 
-  const data: PageResponse<Anime> = await response.json();
+  const data: PageResponse<Anime> | APIError = await response.json();
 
-  return data.data.Page;
+  if ('errors' in data) {
+    return data;
+  }
+
+  return { data: data.data.Page, errors: null };
 }

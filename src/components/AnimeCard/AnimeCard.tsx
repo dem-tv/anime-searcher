@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Anime } from '../api/types/anime.types.ts';
+import type { Anime } from '../../api/types/anime.types.ts';
 
 type Props = {
   anime: Anime;
@@ -18,7 +18,7 @@ export class AnimeCard extends React.PureComponent<Props> {
         </h3>
         <img
           src={this.props.anime.bannerImage}
-          alt={this.props.anime.title.english}
+          alt={this.props.anime.title.native}
         />
         <p className={'px-8'}>{this.props.anime.description}</p>
       </div>

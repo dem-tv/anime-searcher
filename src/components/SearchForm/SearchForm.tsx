@@ -1,7 +1,7 @@
 import React from 'react';
-import { Input } from './Input';
-import { Button } from './Button';
-import { LS } from '../utils/localStorage.ts';
+import { Input } from '../Input/Input.tsx';
+import { Button } from '../Button/Button.tsx';
+import { LS } from '../../utils/localStorage.ts';
 
 type Props = {
   onSubmit: (search: string) => void;
@@ -55,8 +55,13 @@ export class SearchForm extends React.Component<Props, State> {
         className={'flex gap-4 flex-wrap justify-center'}
         onSubmit={this.onSubmit}
       >
-        <Input value={this.state.search} setValue={this.onSearchChange} />
-        <Button type="submit">Explode anime!</Button>
+        <Input
+          name={'search'}
+          label={'Search'}
+          value={this.state.search}
+          setValue={this.onSearchChange}
+        />
+        <Button type="submit">Explore anime!</Button>
       </form>
     );
   }

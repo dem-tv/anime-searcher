@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Pagination } from '../api/types/anime.types.ts';
-import { PageLoader } from './PageLoader.tsx';
+import type { Pagination } from '../../api/types/anime.types.ts';
+import { PageLoader } from '../PageLoader/PageLoader.tsx';
 
 type Props<ListItem> = {
   pagination: Pagination | null;
@@ -30,16 +30,21 @@ export class PageList<ListItem> extends React.Component<Props<ListItem>> {
     }
 
     return (
-      <div className={'flex h-full flex-wrap gap-8 items-center flex-col'}>
-        {this.props.list.map((item) => (
-          <div key={item[this.props.itemKey] as string} className={'max-w-7xl'}>
-            {this.props.renderItem(item)}
-          </div>
-        ))}
+      <>
+        <ul className={'flex h-full flex-wrap gap-8 items-center flex-col'}>
+          {this.props.list.map((item) => (
+            <li
+              key={item[this.props.itemKey] as string}
+              className={'max-w-7xl'}
+            >
+              {this.props.renderItem(item)}
+            </li>
+          ))}
+        </ul>
         {this.props.pagination && (
           <p>Total items: {this.props.pagination.total}</p>
         )}
-      </div>
+      </>
     );
   }
 }
