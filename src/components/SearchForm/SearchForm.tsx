@@ -1,30 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Input } from '../Input/Input.tsx';
 import { Button } from '../Button/Button.tsx';
-import { LS } from '../../utils/localStorage.ts';
+import { useSearchFormInput } from './useSearchFormInput.ts';
 
 type Props = {
   onSubmit: (search: string) => void;
 };
 
 export function SearchForm(props: Props) {
-  const [search, setSearch] = useState('');
+  const { search, setSearch } = useSearchFormInput();
 
   useEffect(() => {
-    const searchSaved = LS.get('search') || '';
-
-    setSearch(searchSaved);
-
-    if (searchSaved) {
-      props.onSubmit(searchSaved);
+    if (search) {
+      props.onSubmit(search);
     }
   }, []);
-
-  function onSearchChange(typedValue: string) {
-    LS.set('search', typedValue);
-
-    setSearch(typedValue);
-  }
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -38,7 +28,7 @@ export function SearchForm(props: Props) {
         name={'search'}
         label={'Search'}
         value={search}
-        setValue={onSearchChange}
+        setValue={setSearch}
       />
       <Button type="submit">Explore anime!</Button>
     </form>
