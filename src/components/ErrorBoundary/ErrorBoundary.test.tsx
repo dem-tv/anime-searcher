@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { screen, render } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { ErrorBoundary } from './ErrorBoundary.tsx';
@@ -21,6 +21,8 @@ describe('ErrorBoundary', () => {
   });
 
   it('Shows fallback on error', () => {
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
     const children = {} as ReactNode;
     const errorText = 'Oooops! Something went wrong! Try to reload the page.';
 
