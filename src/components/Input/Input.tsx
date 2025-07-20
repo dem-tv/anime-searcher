@@ -23,10 +23,8 @@ export class Input extends React.Component<Props> {
   render() {
     return (
       <div>
-        <label className={'opacity-0 h-0'} htmlFor={this.props.name}>
-          {this.props.label}
-        </label>
         <input
+          aria-label={this.props.label}
           name={this.props.name}
           type="text"
           id={this.props.name}
