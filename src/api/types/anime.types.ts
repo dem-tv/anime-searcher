@@ -12,6 +12,16 @@ export type MediaDate = {
   year: number;
 };
 
+export type AnimeShort = {
+  bannerImage: string;
+  description: string;
+  id: number;
+  title: {
+    english: string | null;
+    native: string;
+  };
+};
+
 export type Anime = {
   bannerImage: string;
   description: string;
@@ -32,5 +42,11 @@ export type PageResponse<Media> = {
       pageInfo: Pagination;
       media: Media[];
     };
+  };
+};
+
+export type MediaResponse<Media> = {
+  data: {
+    Media: Media;
   };
 };
