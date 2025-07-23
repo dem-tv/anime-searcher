@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import Main from '../pages/Main/Main.tsx';
-import { AnimeInfo } from '../pages/AnimeInfo/AnimeInfo.tsx';
+import { AnimeDetails } from '../pages/AnimeDetails/AnimeDetails.tsx';
 
 export type RouteType = {
   path: string;
@@ -16,7 +16,7 @@ export const routes: RouteType[] = [
     children: [
       {
         path: ':animeId',
-        element: () => <AnimeInfo />,
+        element: () => <AnimeDetails />,
       },
     ],
   },

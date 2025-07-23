@@ -1,9 +1,11 @@
-import { describe, expect, it } from 'vitest';
-import { render, getByText } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { render, getByText, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MainLayout } from './MainLayout.tsx';
 
 describe('MainLayout', () => {
+  beforeEach(cleanup);
+
   it('Renders MainLayout', () => {
     const container = render(<MainLayout>Content</MainLayout>).container;
 
@@ -19,6 +21,18 @@ describe('MainLayout', () => {
     const childrenContent = getByText(container, 'Content');
 
     expect(headerContent).toBeInTheDocument();
+    expect(childrenContent).toBeInTheDocument();
+  });
+
+  it('Renders sideContent', () => {
+    const container = render(
+      <MainLayout sideContent={'sideContent'}>Content</MainLayout>
+    ).container;
+
+    const sideContent = getByText(container, 'sideContent');
+    const childrenContent = getByText(container, 'Content');
+
+    expect(sideContent).toBeInTheDocument();
     expect(childrenContent).toBeInTheDocument();
   });
 });

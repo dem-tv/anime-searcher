@@ -2,8 +2,9 @@ import { PageLoader } from '../../components/PageLoader/PageLoader.tsx';
 import { useFetchAnimeItem } from '../../api/hooks/useFetchAnimeList.ts';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
+import { AnimeDetailsInfo } from '../../components/AnimeDetailsInfo/AnimeDetailsInfo.tsx';
 
-export function AnimeInfo() {
+export function AnimeDetails() {
   const { fetchAnimeItem, anime, loading, errorMessage } = useFetchAnimeItem();
   const params = useParams();
 
@@ -13,11 +14,13 @@ export function AnimeInfo() {
     }
   }, [params.animeId]);
 
-  if (loading) return <PageLoader />;
-
-  if (errorMessage) {
-    return errorMessage;
+  if (loading) {
+    return <PageLoader />;
   }
 
-  return <div>{anime?.title?.english || ''}</div>;
+  if (errorMessage || !anime) {
+    return errorMessage || 'Error getting anime';
+  }
+
+  return <AnimeDetailsInfo anime={anime} />;
 }

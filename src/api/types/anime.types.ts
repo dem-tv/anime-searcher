@@ -34,6 +34,14 @@ export type Anime = {
   genres: string[];
   startDate: MediaDate;
   endDate: MediaDate;
+  coverImage: {
+    extraLarge: string;
+  };
+  trailer: {
+    id: string;
+    site: string;
+    thumbnail: string;
+  } | null;
 };
 
 export type PageResponse<Media> = {
