@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Input } from '../Input/Input.tsx';
-import { Button } from '../Button/Button.tsx';
+import { Input } from '../../ui/Input/Input.tsx';
+import { Button } from '../../ui/Button/Button.tsx';
 import { useSearchFormInput } from './useSearchFormInput.ts';
 
 type Props = {

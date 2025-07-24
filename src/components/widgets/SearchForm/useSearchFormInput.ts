@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LS } from '../../utils/localStorage.ts';
+import { LS } from '../../../utils/localStorage.ts';
 
 export function useSearchFormInput() {
   const [search, setSearch] = useState(LS.get('search') || '');

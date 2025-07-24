@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary.tsx';
+import { ErrorBoundary } from './components/layouts/ErrorBoundary/ErrorBoundary.tsx';
 import { BrowserRouter } from 'react-router';
 import { RouterConfiguration } from './router/RouterConfiguration.tsx';
 import { routes } from './router/routes.tsx';

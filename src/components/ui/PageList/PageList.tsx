@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import type { Pagination } from '../../api/types/anime.types.ts';
+import type { Pagination } from '../../../api/types/anime.types.ts';
 import { PageLoader } from '../PageLoader/PageLoader.tsx';
 
 type Props<ListItem> = {

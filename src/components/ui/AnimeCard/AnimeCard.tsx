@@ -1,6 +1,6 @@
-import type { AnimeShort } from '../../api/types/anime.types.ts';
+import type { AnimeShort } from '../../../api/types/anime.types.ts';
 import { NavLink, type NavLinkRenderProps } from 'react-router';
-import { getTitle } from '../../utils/getTitle.ts';
+import { getTitle } from '../../../utils/getTitle.ts';
 
 type Props = {
   anime: AnimeShort;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { ErrorButton } from '../../components/ErrorButton/ErrorButton.tsx';
 
 type Props = {
   headerContent?: React.ReactNode;
-  children: React.ReactNode | undefined;
-  sideContent?: React.ReactNode | undefined;
+  children?: React.ReactNode;
+  sideContent?: React.ReactNode;
+  closeElement?: React.ReactNode;
 };
 
 export function MainLayout(props: Props) {
@@ -17,15 +17,19 @@ export function MainLayout(props: Props) {
       <div className={'overflow-auto'}>
         <header
           className={
-            'flex flex-wrap items-center gap-6 justify-center p-8 border-b-2 backdrop-blur sticky top-0 w-full z-10'
+            'flex items-center gap-6 justify-center p-8 border-b-2 backdrop-blur sticky top-0 w-full z-10'
           }
         >
           {props.headerContent}
-          <ErrorButton />
+          {props.closeElement && (
+            <div className={'ml-auto'}>{props.closeElement}</div>
+          )}
         </header>
         <main className={'p-8 flex-1 min-h-dvh'}>{props.children}</main>
       </div>
-      {props.sideContent}
+      {props.sideContent && (
+        <aside className={'overflow-auto'}>{props.sideContent}</aside>
+      )}
     </div>
   );
 }

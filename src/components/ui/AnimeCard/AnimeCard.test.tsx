@@ -1,8 +1,8 @@
-import { describe, expect, it } from 'vitest';
-import { getByAltText, getByText } from '@testing-library/react';
+import { beforeEach, describe, expect, it } from 'vitest';
+import { cleanup, getByAltText, getByText } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { AnimeCard } from './AnimeCard.tsx';
-import { renderWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
+import { renderWithRouter } from '../../../__test-utils__/renderWithRouter.tsx';
 
 const props = {
   anime: {
@@ -21,6 +21,8 @@ const props = {
 };
 
 describe('AnimeCard', () => {
+  beforeEach(cleanup);
+
   it('Renders Card', () => {
     const container = renderWithRouter(<AnimeCard {...props} />).container;
 
@@ -30,7 +32,7 @@ describe('AnimeCard', () => {
   it('Renders title when it is passed', () => {
     const container = renderWithRouter(<AnimeCard {...props} />).container;
 
-    const expectedText = 'Naruto (ROAD OF NARUTO)';
+    const expectedText = 'ROAD OF NARUTO (Naruto)';
     const element = getByText(container, expectedText);
 
     expect(element).toBeInTheDocument();
