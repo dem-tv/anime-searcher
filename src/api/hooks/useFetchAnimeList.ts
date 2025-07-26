@@ -1,4 +1,9 @@
-import type { Anime, AnimeShort, Pagination } from '../types/anime.types.ts';
+import type {
+  Anime,
+  AnimeListRequest,
+  AnimeShort,
+  Pagination,
+} from '../types/anime.types.ts';
 import { useState } from 'react';
 import { fetchAnimeList } from '../requests/fetchAnimeList.ts';
 import { fetchAnimeItem } from '../requests/fetchAnimeItem.ts';
@@ -24,13 +29,13 @@ export function useFetchAnimeList() {
     errorMessage: null,
   });
 
-  async function fetch(search: string) {
+  async function fetch(requestBody: AnimeListRequest) {
     setState((prevState) => ({
       ...prevState,
       loading: true,
     }));
 
-    const { data, errors } = await fetchAnimeList(search);
+    const { data, errors } = await fetchAnimeList(requestBody);
 
     if (data) {
       setState({
@@ -74,7 +79,7 @@ export function useFetchAnimeItem() {
 
     const { data, errors } = await fetchAnimeItem(mediaId);
 
-    console.log();
+    console.log(data);
     if (data) {
       setState({
         loading: false,

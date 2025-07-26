@@ -3,6 +3,7 @@ import { useFetchAnimeItem } from '../../api/hooks/useFetchAnimeList.ts';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { AnimeDetailsInfo } from '../../components/widgets/AnimeDetails/AnimeDetailsInfo.tsx';
+import { CoverLayout } from '../../components/ui/CoverLayout/CoverLayout.tsx';
 
 export function AnimeDetails() {
   const { fetchAnimeItem, anime, loading, errorMessage } = useFetchAnimeItem();
@@ -22,5 +23,9 @@ export function AnimeDetails() {
     return errorMessage || 'Error getting anime';
   }
 
-  return <AnimeDetailsInfo anime={anime} />;
+  return (
+    <CoverLayout bgUrl={anime.coverImage.extraLarge}>
+      <AnimeDetailsInfo anime={anime} />
+    </CoverLayout>
+  );
 }

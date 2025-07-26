@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import Main from '../pages/Main/Main.tsx';
 import { AnimeDetails } from '../pages/AnimeDetails/AnimeDetails.tsx';
 import { NotFound } from '../pages/NotFound/NotFound.tsx';
+import { About } from '../pages/About/About.tsx';
 
 export type RouteType = {
   path: string;
@@ -20,6 +21,10 @@ export const routes: RouteType[] = [
         element: () => <AnimeDetails />,
       },
     ],
+  },
+  {
+    path: '/about',
+    element: () => <About />,
   },
   {
     path: '*',

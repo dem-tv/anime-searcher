@@ -12,6 +12,11 @@ export type MediaDate = {
   year: number;
 };
 
+export type AnimeListRequest = {
+  search: string;
+  page: number;
+};
+
 export type AnimeShort = {
   bannerImage: string;
   description: string;

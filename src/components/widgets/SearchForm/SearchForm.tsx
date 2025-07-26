@@ -4,7 +4,7 @@ import { Button } from '../../ui/Button/Button.tsx';
 import { useSearchFormInput } from './useSearchFormInput.ts';
 
 type Props = {
-  onSubmit: (search: string) => void;
+  onSubmit: (search: string, onMounted: boolean) => void;
 };
 
 export function SearchForm(props: Props) {
@@ -12,14 +12,14 @@ export function SearchForm(props: Props) {
 
   useEffect(() => {
     if (search) {
-      props.onSubmit(search);
+      props.onSubmit(search, true);
     }
   }, []);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    props.onSubmit(search);
+    props.onSubmit(search, false);
   }
 
   return (

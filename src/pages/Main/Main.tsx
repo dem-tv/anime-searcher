@@ -1,33 +1,35 @@
 import { MainLayout } from '../../components/layouts/MainLayout/MainLayout.tsx';
 import { SearchForm } from '../../components/widgets/SearchForm/SearchForm.tsx';
-import { useFetchAnimeList } from '../../api/hooks/useFetchAnimeList.ts';
 import { PageList } from '../../components/ui/PageList/PageList.tsx';
 import { AnimeCard } from '../../components/ui/AnimeCard/AnimeCard.tsx';
 import { NavLink, useOutlet } from 'react-router';
-import type { AnimeShort } from '../../api/types/anime.types.ts';
 import { Icon } from '../../components/ui/Icon/Icon.tsx';
+import { Pagination } from '../../components/ui/Pagination/Pagination.tsx';
+import { useGetList } from './useGetList.ts';
 
 function Main() {
-  const sidebar = useOutlet();
+  const detailsContent = useOutlet();
 
-  const { fetchAnimeList, animeList, pagination, loading, errorMessage } =
-    useFetchAnimeList();
-
-  async function onSearch(search: string) {
-    await fetchAnimeList(search);
-  }
-
-  function getCardUrl(card: AnimeShort) {
-    return `/${card.id}`;
-  }
+  const {
+    searchPageLink,
+    animeList,
+    pagination,
+    loading,
+    errorMessage,
+    onSearch,
+    getCardUrl,
+    getPagableUrl,
+    onChangePagination,
+    currentPage,
+  } = useGetList();
 
   return (
     <MainLayout
-      sideContent={sidebar}
+      sideContent={detailsContent}
       headerContent={<SearchForm onSubmit={onSearch} />}
       closeElement={
-        sidebar && (
-          <NavLink aria-label={'Скрыть'} to={'/'}>
+        detailsContent && (
+          <NavLink aria-label={'Collapse'} to={searchPageLink}>
             <Icon rotate="180" name="expand-left" />
           </NavLink>
         )
@@ -37,7 +39,17 @@ function Main() {
         errorMessage
       ) : (
         <PageList
-          pagination={pagination}
+          pagination={
+            pagination && (
+              <Pagination
+                hasNext={pagination.hasNextPage}
+                paginationLink={getPagableUrl}
+                currentPage={currentPage}
+                lastPage={pagination.lastPage}
+                onChangePagination={onChangePagination}
+              />
+            )
+          }
           list={animeList}
           loading={loading}
           renderItem={(item) => (

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 type Props = {
   headerContent?: React.ReactNode;
@@ -26,6 +27,16 @@ export function MainLayout(props: Props) {
           )}
         </header>
         <main className={'p-8 flex-1 min-h-dvh'}>{props.children}</main>
+        <footer className={'p-4 flex justify-center border-t'}>
+          <NavLink
+            className={
+              'text-gray-600 mx-auto inline-block transition-colors hover:text-pink-400'
+            }
+            to={'/about'}
+          >
+            About developer
+          </NavLink>
+        </footer>
       </div>
       {props.sideContent && (
         <aside className={'overflow-auto'}>{props.sideContent}</aside>

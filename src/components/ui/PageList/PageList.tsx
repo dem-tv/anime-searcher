@@ -1,9 +1,8 @@
-import React, { useCallback } from 'react';
-import type { Pagination } from '../../../api/types/anime.types.ts';
+import React, { type ReactNode, useCallback } from 'react';
 import { PageLoader } from '../PageLoader/PageLoader.tsx';
 
 type Props<ListItem> = {
-  pagination: Pagination | null;
+  pagination?: ReactNode;
   list: ListItem[];
   renderItem: (item: ListItem) => React.ReactNode;
   loading: boolean;
@@ -40,11 +39,11 @@ export function PageList<ListItem>(props: Props<ListItem>) {
   }
 
   return (
-    <>
+    <div className={'flex flex-col gap-4 items-center'}>
       <ul className={'flex h-full flex-wrap gap-8 items-center flex-col'}>
         {props.list.map(renderItem)}
       </ul>
-      {props.pagination && <p>Total items: {props.pagination.total}</p>}
-    </>
+      {props.pagination}
+    </div>
   );
 }

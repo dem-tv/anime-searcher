@@ -1,5 +1,9 @@
 import { API_HOST, DEFAULT_FETCH_OPTIONS } from '../constants.ts';
-import type { AnimeShort, PageResponse } from '../types/anime.types.ts';
+import type {
+  AnimeListRequest,
+  AnimeShort,
+  PageResponse,
+} from '../types/anime.types.ts';
 import type { APIError } from '../types/error.types.ts';
 
 const listQuery = `query Media(
@@ -11,8 +15,9 @@ const listQuery = `query Media(
     $stylised: Boolean
     $nativeStylised2: Boolean
     $asHtml: Boolean
+    $page: Int
   ) {
-    Page(perPage: $perPage) {
+    Page(perPage: $perPage, page: $page) {
       pageInfo {
         currentPage
         hasNextPage
@@ -33,9 +38,10 @@ const listQuery = `query Media(
   }
 `;
 
-export async function fetchAnimeList(search: string) {
+export async function fetchAnimeList(requestBody: AnimeListRequest) {
   const variables = {
-    search,
+    search: requestBody.search,
+    page: requestBody.page,
     type: 'ANIME',
     perPage: 10,
     sort: 'SCORE_DESC',

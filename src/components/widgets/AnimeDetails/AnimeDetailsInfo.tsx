@@ -1,6 +1,5 @@
 import type { Anime } from '../../../api/types/anime.types.ts';
 import { getTitle } from '../../../utils/getTitle.ts';
-import { CoverLayout } from '../../ui/CoverLayout/CoverLayout.tsx';
 import { Typography } from '../../ui/Typography/Typography.tsx';
 import { Block } from '../../ui/Block/Block.tsx';
 import { TagList } from '../../ui/TagList/TagList.tsx';
@@ -18,7 +17,7 @@ export function AnimeDetailsInfo(props: Props) {
   );
 
   return (
-    <CoverLayout bgUrl={props.anime.coverImage.extraLarge}>
+    <>
       <Block>
         <Typography tagName="h1" center>
           {title}
@@ -45,6 +44,6 @@ export function AnimeDetailsInfo(props: Props) {
         </Typography>
         <Typography variant="sm">End date: {endDateFormatted}</Typography>
       </Block>
-    </CoverLayout>
+    </>
   );
 }
