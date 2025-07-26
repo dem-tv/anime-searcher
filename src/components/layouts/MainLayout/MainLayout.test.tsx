@@ -1,19 +1,22 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { render, getByText, cleanup } from '@testing-library/react';
+import { getByText, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MainLayout } from './MainLayout.tsx';
+import { renderWithRouter } from '../../../__test-utils__/renderWithRouter.tsx';
 
 describe('MainLayout', () => {
   beforeEach(cleanup);
 
   it('Renders MainLayout', () => {
-    const container = render(<MainLayout>Content</MainLayout>).container;
+    const container = renderWithRouter(
+      <MainLayout>Content</MainLayout>
+    ).container;
 
     expect(container).toBeInTheDocument();
   });
 
   it('Renders children and contentHeader', () => {
-    const container = render(
+    const container = renderWithRouter(
       <MainLayout headerContent={'Header'}>Content</MainLayout>
     ).container;
 
@@ -25,7 +28,7 @@ describe('MainLayout', () => {
   });
 
   it('Renders sideContent', () => {
-    const container = render(
+    const container = renderWithRouter(
       <MainLayout sideContent={'sideContent'}>Content</MainLayout>
     ).container;
 

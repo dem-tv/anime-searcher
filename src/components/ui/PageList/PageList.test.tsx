@@ -13,13 +13,7 @@ type ListItem = {
 };
 
 const props = {
-  pagination: {
-    currentPage: 1,
-    hasNextPage: false,
-    lastPage: 12,
-    perPage: 10,
-    total: 12,
-  },
+  pagination: 'pagination component',
   list: [
     {
       text: 'text1',
