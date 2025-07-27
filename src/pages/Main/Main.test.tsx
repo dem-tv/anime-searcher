@@ -6,7 +6,9 @@ import {
   getByTestId,
   getByText,
   queryByRole,
+  screen,
   queryByText,
+  render,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import Main from './Main.tsx';
@@ -14,8 +16,9 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { API_HOST } from '../../api/constants.ts';
 import { animeListMockResponse } from '../../__mocks__/animeList.ts';
-import { errorMockResponse } from '../../__mocks__/error.ts';
+import { errorMockResponse } from '../../__mocks__/errorResponse.ts';
 import { renderWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
+import { MemoryRouter, Route, Routes } from 'react-router';
 
 const successHandlers = [
   http.post(API_HOST, () => {
@@ -124,5 +127,58 @@ describe('Main', () => {
 
     expect(errorText).toBeInTheDocument();
     errorServer.close();
+  });
+
+  it('Renders back link when details is opened', async () => {
+    successServer.listen();
+
+    render(
+      <MemoryRouter initialEntries={['/:aimeId']}>
+        <Routes>
+          <Route path={'/'} element={<Main />}>
+            <Route path={':animeId'} element="child"></Route>
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const back = screen.getByLabelText('Collapse');
+
+    expect(back).toBeInTheDocument();
+    successServer.close();
+  });
+
+  it('Does`nt render back link when details is closed', async () => {
+    successServer.listen();
+
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path={'/'} element={<Main />}>
+            <Route path={':animeId'} element="child"></Route>
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const back = screen.queryByLabelText('Collapse');
+
+    expect(back).not.toBeInTheDocument();
+    successServer.close();
+  });
+
+  it('Shows current page', async () => {
+    localStorage.setItem('search', JSON.stringify('naruto'));
+
+    renderWithRouter(<Main />, '/?page=2');
+
+    const currentPage = await vi.waitFor(() => {
+      const currentPage = screen.getByText('Current page: 2');
+      expect(currentPage).toBeTruthy();
+      return currentPage;
+    });
+
+    expect(currentPage).toBeInTheDocument();
+    successServer.close();
   });
 });

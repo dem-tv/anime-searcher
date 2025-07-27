@@ -79,7 +79,6 @@ export function useFetchAnimeItem() {
 
     const { data, errors } = await fetchAnimeItem(mediaId);
 
-    console.log(data);
     if (data) {
       setState({
         loading: false,

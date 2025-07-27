@@ -28,10 +28,7 @@ export type AnimeShort = {
 };
 
 export type Anime = {
-  bannerImage: string;
   description: string;
-  episodes: number;
-  duration: number;
   title: {
     english: string | null;
     native: string;

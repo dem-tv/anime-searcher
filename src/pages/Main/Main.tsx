@@ -45,7 +45,6 @@ function Main() {
                 hasNext={pagination.hasNextPage}
                 paginationLink={getPagableUrl}
                 currentPage={currentPage}
-                lastPage={pagination.lastPage}
                 onChangePagination={onChangePagination}
               />
             )

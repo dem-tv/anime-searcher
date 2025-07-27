@@ -2,14 +2,13 @@ import { NavLink } from 'react-router';
 
 type Props = {
   currentPage: number;
-  lastPage: number;
   hasNext: boolean;
   paginationLink: (page: number) => string;
   onChangePagination: (page: number) => void;
 };
 
 export function Pagination(props: Props) {
-  if (props.lastPage === 1) return null;
+  if (props.currentPage === 1 && !props.hasNext) return null;
 
   const isFirstPage = props.currentPage === 1;
 
@@ -29,7 +28,7 @@ export function Pagination(props: Props) {
           Prev
         </NavLink>
       )}
-      <p>Current page: {props.currentPage}</p>
+      <p aria-current={'page'}>Current page: {props.currentPage}</p>
       {props.hasNext && (
         <NavLink className={cn} onClick={onClickNext} to={nextLink}>
           Next

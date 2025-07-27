@@ -3,7 +3,7 @@ import { useFetchAnimeItem } from '../../api/hooks/useFetchAnimeList.ts';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { AnimeDetailsInfo } from '../../components/widgets/AnimeDetails/AnimeDetailsInfo.tsx';
-import { CoverLayout } from '../../components/ui/CoverLayout/CoverLayout.tsx';
+import { CoverLayout } from '../../components/layouts/CoverLayout/CoverLayout.tsx';
 
 export function AnimeDetails() {
   const { fetchAnimeItem, anime, loading, errorMessage } = useFetchAnimeItem();

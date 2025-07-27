@@ -30,6 +30,7 @@ export function AnimeDetailsInfo(props: Props) {
             Trailer
           </Typography>
           <iframe
+            role={'presentation'}
             height="300"
             width="100%"
             allowFullScreen
