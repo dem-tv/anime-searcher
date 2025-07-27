@@ -12,11 +12,23 @@ export type MediaDate = {
   year: number;
 };
 
-export type Anime = {
+export type AnimeListRequest = {
+  search: string;
+  page: number;
+};
+
+export type AnimeShort = {
   bannerImage: string;
   description: string;
-  episodes: number;
-  duration: number;
+  id: number;
+  title: {
+    english: string | null;
+    native: string;
+  };
+};
+
+export type Anime = {
+  description: string;
   title: {
     english: string | null;
     native: string;
@@ -24,6 +36,14 @@ export type Anime = {
   genres: string[];
   startDate: MediaDate;
   endDate: MediaDate;
+  coverImage: {
+    extraLarge: string;
+  };
+  trailer: {
+    id: string;
+    site: string;
+    thumbnail: string;
+  } | null;
 };
 
 export type PageResponse<Media> = {
@@ -32,5 +52,11 @@ export type PageResponse<Media> = {
       pageInfo: Pagination;
       media: Media[];
     };
+  };
+};
+
+export type MediaResponse<Media> = {
+  data: {
+    Media: Media;
   };
 };
