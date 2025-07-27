@@ -168,6 +168,7 @@ describe('Main', () => {
   });
 
   it('Shows current page', async () => {
+    successServer.listen();
     localStorage.setItem('search', JSON.stringify('naruto'));
 
     renderWithRouter(<Main />, '/?page=2');
