@@ -1,20 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router';
+import clsx from 'clsx';
 
 type Props = {
   headerContent?: React.ReactNode;
   children?: React.ReactNode;
   sideContent?: React.ReactNode;
   closeElement?: React.ReactNode;
+  bottomContent?: React.ReactNode;
 };
 
 export function MainLayout(props: Props) {
+  const cn = clsx({
+    'grid-cols-2': props.sideContent,
+    'grid-cols-1': !props.sideContent,
+    'bg-neutral-100 text-xl overflow-hidden font-mono h-dvh grid grid-rows-[1fr,fit-content]': true,
+  });
+
   return (
-    <div
-      className={
-        'bg-neutral-100 text-xl overflow-hidden font-mono h-dvh grid grid-cols-[repeat(auto-fit,minmax(0,1fr))]'
-      }
-    >
+    <div className={cn}>
       <div className={'overflow-auto'}>
         <header
           className={
@@ -40,6 +44,11 @@ export function MainLayout(props: Props) {
       </div>
       {props.sideContent && (
         <aside className={'overflow-auto'}>{props.sideContent}</aside>
+      )}
+      {props.bottomContent && (
+        <div className="border-t px-8 py-2 row-start-2 row-end-3 col-end-3 col-start-1">
+          {props.bottomContent}
+        </div>
       )}
     </div>
   );

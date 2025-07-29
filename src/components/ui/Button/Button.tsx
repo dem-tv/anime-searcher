@@ -1,23 +1,44 @@
-import React, { type HTMLAttributes } from 'react';
+import React, {
+  type AnchorHTMLAttributes,
+  type ButtonHTMLAttributes,
+} from 'react';
 
-type Props = {
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+type LinkProps = AnchorHTMLAttributes<HTMLLinkElement>;
+
+type CommonProps = {
   onClick?: () => void;
   children: React.ReactNode;
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
-} & HTMLAttributes<HTMLButtonElement>;
+};
 
-export function Button(props: Props) {
-  const { type: buttonType = 'button', children, ...restProps } = props;
+type Props<Tag extends 'button' | 'a'> = {
+  tag?: Tag;
+} & CommonProps &
+  (Tag extends 'button' ? ButtonProps : LinkProps);
+
+export function Button<Tag extends 'button' | 'a'>(props: Props<Tag>) {
+  const { children, tag = 'button', ...restProps } = props;
+
+  const cn =
+    'bg-pink-950 px-2 min-h-12 rounded-sm whitespace-nowrap border-2 text-white active:scale-90 flex items-center';
+
+  if (tag === 'button') {
+    const { type = 'button', ...buttonProps } = restProps;
+
+    return (
+      <button
+        className={cn}
+        type={type as ButtonProps['type']}
+        {...(buttonProps as object)}
+      >
+        {children}
+      </button>
+    );
+  }
 
   return (
-    <button
-      className={
-        'bg-pink-950 px-2 min-h-12 rounded-sm whitespace-nowrap border-2 text-white active:scale-90'
-      }
-      type={buttonType}
-      {...restProps}
-    >
+    <a className={cn} {...(restProps as object)}>
       {children}
-    </button>
+    </a>
   );
 }
