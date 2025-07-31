@@ -13,11 +13,11 @@ export function SelectCard(props: Props) {
     <div
       {...restProps}
       className={
-        'p-2 border flex flex-col gap-6 items-start bg-neutral-200 rounded-sm'
+        'p-2 border flex flex-col gap-6 items-start bg-neutral-200 dark:bg-neutral-900 dark:border-gray-800 rounded-sm'
       }
     >
       <input
-        className={'cursor-pointer h-5 w-5'}
+        className={'cursor-pointer h-5 w-5 form-checkbox dark:bg-pink-200'}
         checked={selected}
         onChange={onSelect}
         type="checkbox"

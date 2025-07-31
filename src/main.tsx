@@ -5,18 +5,23 @@ import { ErrorBoundary } from './components/layouts/ErrorBoundary/ErrorBoundary.
 import { BrowserRouter } from 'react-router';
 import { RouterConfiguration } from './router/RouterConfiguration.tsx';
 import { routes } from './router/routes.tsx';
-import store from './store';
+import { setupStore } from './store';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from './components/ui/Theme/ThemeProvider.tsx';
+
+const store = setupStore();
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ErrorBoundary>
-      <BrowserRouter>
-        <Provider store={store}>
-          <RouterConfiguration routes={routes} />
-        </Provider>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Provider store={store}>
+            <RouterConfiguration routes={routes} />
+          </Provider>
+        </BrowserRouter>
+      </ThemeProvider>
     </ErrorBoundary>
   </StrictMode>
 );

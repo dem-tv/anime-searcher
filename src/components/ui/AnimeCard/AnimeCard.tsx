@@ -12,7 +12,7 @@ export function AnimeCard(props: Props) {
 
   function getClassName(parameters: NavLinkRenderProps) {
     const defaultClass =
-      'shadow-md bg-white gap-4 flex flex-col rounded-sm cursor-pointer py-4 hover:shadow-2xl hover:-translate-y-3 transition-all';
+      'shadow-md bg-white dark:bg-neutral-800 dark:text-gray-300 gap-4 flex flex-col rounded-sm cursor-pointer py-4 hover:shadow-2xl hover:-translate-y-3 transition-all';
 
     if (parameters.isActive) {
       return `${defaultClass} shadow-fuchsia-200 hover:shadow-fuchsia-200 shadow-2xl -translate-y-3 `;
