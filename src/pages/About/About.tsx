@@ -2,7 +2,11 @@ import { NavLink } from 'react-router';
 
 export function About() {
   return (
-    <div className={'p-6 flex flex-col center'}>
+    <div
+      className={
+        'p-6 flex flex-col center dark:bg-neutral-900 dark:text-gray-300 min-h-dvh'
+      }
+    >
       <h1 className={'mb-4 font-bold text-4xl text-pink-400'}>
         Demchuk Tatuana
       </h1>

@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router';
+import { Button } from '../Button/Button.tsx';
+import { Typography } from '../Typography/Typography.tsx';
 
 type Props = {
   currentPage: number;
@@ -18,21 +19,20 @@ export function Pagination(props: Props) {
   const onClickPrev = () => props.onChangePagination(props.currentPage - 1);
   const onClickNext = () => props.onChangePagination(props.currentPage + 1);
 
-  const cn =
-    'border px-2 bg-white min-w-8 h-8 rounded text-center block hover:shadow';
-
   return (
-    <div className={'flex gap-2'}>
+    <div className={'flex gap-2 items-center'}>
       {!isFirstPage && (
-        <NavLink className={cn} onClick={onClickPrev} to={prevLink}>
+        <Button tag={'NavLink'} onClick={onClickPrev} to={prevLink}>
           Prev
-        </NavLink>
+        </Button>
       )}
-      <p aria-current={'page'}>Current page: {props.currentPage}</p>
+      <Typography aria-current={'page'}>
+        Current page: {props.currentPage}
+      </Typography>
       {props.hasNext && (
-        <NavLink className={cn} onClick={onClickNext} to={nextLink}>
+        <Button tag={'NavLink'} onClick={onClickNext} to={nextLink}>
           Next
-        </NavLink>
+        </Button>
       )}
     </div>
   );

@@ -39,11 +39,11 @@ export function AnimeDetailsInfo(props: Props) {
         </Block>
       )}
       <Block>
-        <Typography variant="sm">{props.anime.description}</Typography>
-        <Typography variant="sm" mt="sm">
+        <Typography variant="s">{props.anime.description}</Typography>
+        <Typography variant="s" mt="sm">
           Release date: {startDateFormatted}
         </Typography>
-        <Typography variant="sm">End date: {endDateFormatted}</Typography>
+        <Typography variant="s">End date: {endDateFormatted}</Typography>
       </Block>
     </>
   );

@@ -20,20 +20,26 @@ export function MainLayout(props: Props) {
 
   return (
     <div className={cn}>
-      <div className={'overflow-auto'}>
+      <div
+        className={
+          'overflow-auto grid grid-rows-[min-content,auto,min-content]'
+        }
+      >
         <header
           className={
-            'flex items-center dark:border-gray-800 gap-6 justify-center p-8 border-b backdrop-blur sticky top-0 w-full z-10'
+            'flex items-center dark:border-gray-800 gap-2 justify-center p-4 py-6 border-b backdrop-blur sticky top-0 w-full z-10'
           }
         >
+          <ToggleTheme className={'mr-auto'} />
           {props.headerContent}
-          <ToggleTheme />
           {props.closeElement && (
             <div className={'ml-auto'}>{props.closeElement}</div>
           )}
         </header>
-        <main className={'p-8 flex-1 min-h-dvh'}>{props.children}</main>
-        <footer className={'p-4 flex justify-center border-t'}>
+        <main className={' p-4 py-6 flex-1'}>{props.children}</main>
+        <footer
+          className={'p-4 flex justify-center border-t dark:border-gray-800 '}
+        >
           <NavLink
             className={
               'text-gray-600 dark:text-gray-300 mx-auto inline-block transition-colors hover:text-pink-400 dark:hover:text-pink-400'
@@ -48,7 +54,7 @@ export function MainLayout(props: Props) {
         <aside className={'overflow-auto'}>{props.sideContent}</aside>
       )}
       {props.bottomContent && (
-        <div className="border-t dark:border-gray-800 px-8 py-2 row-start-2 row-end-3 col-end-3 col-start-1">
+        <div className="border-t dark:border-gray-800 px-6 py-2 row-start-2 row-end-3 col-end-3 col-start-1">
           {props.bottomContent}
         </div>
       )}

@@ -10,6 +10,7 @@ import { useSelectCard } from './useSelectCard.ts';
 import { SelectCard } from '../../components/ui/SelectCard/SelectCard.tsx';
 import { SelectInfo } from '../../components/ui/SelectInfo/SelectInfo.tsx';
 import { Button } from '../../components/ui/Button/Button.tsx';
+import { Typography } from '../../components/ui/Typography/Typography.tsx';
 
 function Main() {
   const detailsContent = useOutlet();
@@ -50,7 +51,9 @@ function Main() {
       bottomContent={
         hasSelectedCards && (
           <SelectInfo
-            leftContent={selectedCardsTotalLabel}
+            leftContent={
+              <Typography variant={'m'}>{selectedCardsTotalLabel}</Typography>
+            }
             rightContent={
               <>
                 <Button onClick={unselectAllCards}>UnselectAll</Button>

@@ -1,6 +1,7 @@
 import type { AnimeShort } from '../../../api/types/anime.types.ts';
 import { NavLink, type NavLinkRenderProps } from 'react-router';
 import { getTitle } from '../../../utils/getTitle.ts';
+import { Typography } from '../Typography/Typography.tsx';
 
 type Props = {
   anime: AnimeShort;
@@ -12,10 +13,10 @@ export function AnimeCard(props: Props) {
 
   function getClassName(parameters: NavLinkRenderProps) {
     const defaultClass =
-      'shadow-md bg-white dark:bg-neutral-800 dark:text-gray-300 gap-4 flex flex-col rounded-sm cursor-pointer py-4 hover:shadow-2xl hover:-translate-y-3 transition-all';
+      'shadow-md bg-white dark:bg-neutral-800 dark:text-gray-300 gap-4 flex flex-col rounded-sm cursor-pointer py-4 hover:-translate-y-3 transition-all';
 
     if (parameters.isActive) {
-      return `${defaultClass} shadow-fuchsia-200 hover:shadow-fuchsia-200 shadow-2xl -translate-y-3 `;
+      return `${defaultClass} shadow-pink-800 shadow-2xl -translate-y-3 `;
     }
 
     return defaultClass;
@@ -23,9 +24,15 @@ export function AnimeCard(props: Props) {
 
   return (
     <NavLink to={props.to} className={getClassName}>
-      <h3 className={'text-center text-4xl px-8'}>{title}</h3>
-      <img src={props.anime.bannerImage} alt={props.anime.title.native} />
-      <p className={'px-8 line-clamp-3'}>{props.anime.description}</p>
+      <Typography className={'px-4'} center variant="l">
+        {title}
+      </Typography>
+      {props.anime.bannerImage && (
+        <img src={props.anime.bannerImage} alt={props.anime.title.native} />
+      )}
+      <Typography className={'px-4 line-clamp-3'} center variant="s">
+        {props.anime.description}
+      </Typography>
     </NavLink>
   );
 }
