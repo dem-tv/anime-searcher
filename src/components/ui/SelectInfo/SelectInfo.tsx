@@ -8,8 +8,8 @@ type Props = {
 export function SelectInfo(props: Props) {
   return (
     <div className={'flex items-center w-full flex-wrap justify-between'}>
-      <p>{props.leftContent}</p>
-      <div className={'flex gap-2'}>{props.rightContent}</div>
+      {props.leftContent}
+      <div className={'flex gap-2 mr-auto'}>{props.rightContent}</div>
     </div>
   );
 }

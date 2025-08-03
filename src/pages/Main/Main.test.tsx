@@ -199,3 +199,54 @@ describe('Main', () => {
     successServer.close();
   });
 });
+
+describe('Main.tsx - selection', () => {
+  it('Clicking on checkboxes selects and shows count', async () => {
+    successServer.listen();
+    localStorage.setItem('search', JSON.stringify('naruto'));
+
+    renderDefault();
+
+    await vi.waitFor(() => {
+      const list = screen.queryByRole('list');
+      expect(list).toBeTruthy();
+    });
+
+    screen
+      .getAllByRole('checkbox')
+      .slice(0, 5)
+      .forEach((checkbox) => {
+        fireEvent.click(checkbox);
+      });
+
+    const selectText = screen.getByText('Selected cards: 5');
+
+    expect(selectText).toBeInTheDocument();
+  });
+
+  it('After selection ang page changing shows selected cards', async () => {
+    fireEvent.click(screen.getByText('Next'));
+
+    const selectText = screen.getByText('Selected cards: 5');
+
+    expect(selectText).toBeInTheDocument();
+    successServer.close();
+  });
+
+  it('Adds link for download when items selected', async () => {
+    const downloadBtn = screen.getByRole('link', { name: 'Download' });
+
+    expect(downloadBtn).toHaveAttribute('href', 'mock-object-url');
+    expect(downloadBtn).toHaveAttribute('download', '5_items.csv');
+  });
+
+  it('Clicking on "Unselect all" unselects all cards', async () => {
+    const unselectBtn = screen.getByRole('button', { name: 'Unselect all' });
+    fireEvent.click(unselectBtn);
+
+    const selectText = screen.queryByText('Selected cards: 5');
+
+    expect(selectText).not.toBeInTheDocument();
+    successServer.close();
+  });
+});

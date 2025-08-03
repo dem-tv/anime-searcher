@@ -56,7 +56,7 @@ function Main() {
             }
             rightContent={
               <>
-                <Button onClick={unselectAllCards}>UnselectAll</Button>
+                <Button onClick={unselectAllCards}>Unselect all</Button>
                 <Button
                   tag="a"
                   href={downloadLink.url}
