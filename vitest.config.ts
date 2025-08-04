@@ -4,6 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
   test: {
     environment: 'jsdom',
+    setupFiles: ['./tests.setup.ts'],
     coverage: {
       include: ['src/**/*.{js,jsx,ts,tsx}'],
       exclude: [
@@ -11,8 +12,8 @@ export default defineConfig({
         'src/**/*.spec.{js,jsx,ts,tsx}',
         'src/index.{js,jsx,ts,tsx}',
         'src/setupTests.{js,ts}',
-        'src/types/**/*.{js,ts}',
-        'src/api/types/**/*.{js,ts}',
+        'src/types.ts/**/*.{js,ts}',
+        'src/api/types.ts/**/*.{js,ts}',
         'src/**/*.d.ts',
         'src/main.tsx',
       ],

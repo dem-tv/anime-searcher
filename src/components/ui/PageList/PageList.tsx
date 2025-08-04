@@ -40,7 +40,7 @@ export function PageList<ListItem>(props: Props<ListItem>) {
 
   return (
     <div className={'flex flex-col gap-4 items-center'}>
-      <ul className={'flex h-full flex-wrap gap-8 items-center flex-col'}>
+      <ul className={'flex h-full flex-wrap gap-3 items-center flex-col'}>
         {props.list.map(renderItem)}
       </ul>
       {props.pagination}

@@ -1,5 +1,5 @@
-import { describe, expect, vi, it } from 'vitest';
-import { screen } from '@testing-library/react';
+import { describe, expect, vi, it, beforeEach } from 'vitest';
+import { cleanup, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 
 import { http, HttpResponse } from 'msw';
@@ -25,6 +25,8 @@ const errorHandlers = [
 const successServer = setupServer(...successHandlers);
 const errorServer = setupServer(...errorHandlers);
 describe('AnimeDetails', () => {
+  beforeEach(cleanup);
+
   it('Renders loader search', async () => {
     successServer.listen();
     renderWithRouter(<AnimeDetails />, '/123', '/:animeId');

@@ -3,13 +3,16 @@ import { getByText, cleanup } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import { MainLayout } from './MainLayout.tsx';
 import { renderWithRouter } from '../../../__test-utils__/renderWithRouter.tsx';
+import { ThemeProvider } from '../../ui/Theme/ThemeProvider.tsx';
 
 describe('MainLayout', () => {
   beforeEach(cleanup);
 
   it('Renders MainLayout', () => {
     const container = renderWithRouter(
-      <MainLayout>Content</MainLayout>
+      <ThemeProvider>
+        <MainLayout>Content</MainLayout>
+      </ThemeProvider>
     ).container;
 
     expect(container).toBeInTheDocument();
@@ -17,7 +20,9 @@ describe('MainLayout', () => {
 
   it('Renders children and contentHeader', () => {
     const container = renderWithRouter(
-      <MainLayout headerContent={'Header'}>Content</MainLayout>
+      <ThemeProvider>
+        <MainLayout headerContent={'Header'}>Content</MainLayout>
+      </ThemeProvider>
     ).container;
 
     const headerContent = getByText(container, 'Header');
@@ -29,7 +34,9 @@ describe('MainLayout', () => {
 
   it('Renders sideContent', () => {
     const container = renderWithRouter(
-      <MainLayout sideContent={'sideContent'}>Content</MainLayout>
+      <ThemeProvider>
+        <MainLayout sideContent={'sideContent'}>Content</MainLayout>
+      </ThemeProvider>
     ).container;
 
     const sideContent = getByText(container, 'sideContent');

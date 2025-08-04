@@ -2,13 +2,13 @@ import type { ReactNode } from 'react';
 import { render } from '@testing-library/react';
 import { BrowserRouter, MemoryRouter, Route, Routes } from 'react-router';
 
-export function renderWithRouter(
+export function getElementWithRouter(
   ui: ReactNode,
   url: string | null = '',
   path: string = ''
 ) {
   if (url) {
-    return render(
+    return (
       <MemoryRouter initialEntries={[url]}>
         <Routes>
           <Route path={path} element={ui} />
@@ -17,5 +17,13 @@ export function renderWithRouter(
     );
   }
 
-  return render(ui, { wrapper: BrowserRouter });
+  return <BrowserRouter>{ui}</BrowserRouter>;
+}
+
+export function renderWithRouter(
+  ui: ReactNode,
+  url: string | null = '',
+  path: string = ''
+) {
+  return render(getElementWithRouter(ui, url, path));
 }

@@ -10,233 +10,112 @@ export const animeListMockResponse = {
       },
       media: [
         {
-          bannerImage: null,
-          chapters: null,
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/155348-I6f4TQKslVx2.jpg',
           description:
-            "Welcome to the Hidden Leaf Village. The village where Uzumaki Naruto, star of the TV show \"Naruto\" makes his home. Every day, countless powerful ninjas carry out missions and train to hone their skills. Our main character is one of these powerful ninjas...but it's not Naruto! It's the ninja who can't use ninjutsu, Rock Lee! In spite of his handicap, Lee has big dreams. He works hard every day to perfect his hand-to-hand combat skills and become a splendid ninja! And to achieve his dream, he puts in more effort than anyone else. Under the hot-blooded tutelage of his teacher Guy, he works alongside his teammates Tenten and Neji. Watch the Beautiful Green Beast Rock Lee train, go on missions, and have all sorts of adventures! <br><br>\n(Source: Crunchyroll) ",
-          episodes: 51,
-          duration: 24,
-          title: {
-            english: 'NARUTO Spin-Off: Rock Lee & His Ninja Pals',
-            native: 'NARUTOナルトSD ロック・リーの青春フルパワー忍伝',
-          },
-          genres: ['Action', 'Comedy'],
-          startDate: {
-            day: 3,
-            month: 4,
-            year: 2012,
-          },
-          endDate: {
-            day: 26,
-            month: 3,
-            year: 2013,
-          },
-        },
-        {
-          bannerImage: null,
-          chapters: null,
-          description:
-            '4-minute specials included in the Blu-ray Box 1 & 2 of Gundam Build Fighters.',
-          episodes: 3,
-          duration: 4,
+            'A special animation made to commemorate the 20th anniversary of the <i>NARUTO</i> anime.',
+          id: 155348,
           title: {
             english: null,
-            native: 'ガンダムビルドファイターズ「SD騎士ファイターズ」',
-          },
-          genres: ['Comedy', 'Mecha'],
-          startDate: {
-            day: 26,
-            month: 3,
-            year: 2014,
-          },
-          endDate: {
-            day: 20,
-            month: 6,
-            year: 2014,
-          },
-        },
-        {
-          bannerImage: null,
-          chapters: null,
-          description:
-            'A collection of short parodies of the Mobile Suit Gundam saga. Episode 1 pokes fun at key events that occurred during the One Year War. In episode 2, Amuro, Kamille and Judau fight over who runs the better pension when Char comes in to crash their party. Episode 3 is the SD Olympics, an array of athletic events pitting man with mobile suit. <br>',
-          episodes: 3,
-          duration: 10,
-          title: {
-            english: null,
-            native: '機動戦士SDガンダム',
-          },
-          genres: ['Comedy', 'Mecha', 'Sci-Fi'],
-          startDate: {
-            day: 12,
-            month: 3,
-            year: 1988,
-          },
-          endDate: {
-            day: 25,
-            month: 5,
-            year: 1988,
-          },
-        },
-        {
-          bannerImage: null,
-          chapters: null,
-          description:
-            'Based on <i>Kamen Rider SD</i>, an official parody of Showa-era Kamen Rider shows.',
-          episodes: 1,
-          duration: 29,
-          title: {
-            english: null,
-            native: '仮面ライダーSD 怪奇!?クモ男',
-          },
-          genres: ['Action', 'Comedy'],
-          startDate: {
-            day: 22,
-            month: 3,
-            year: 1993,
-          },
-          endDate: {
-            day: 22,
-            month: 3,
-            year: 1993,
-          },
-        },
-        {
-          bannerImage: null,
-          chapters: null,
-          description:
-            'A Romance of the Three Kingdoms retelling using SD Gundams.',
-          episodes: 51,
-          duration: 12,
-          title: {
-            english: null,
-            native: 'SDガンダム三国伝 Brave Battle Warriors',
-          },
-          genres: ['Action', 'Mecha'],
-          startDate: {
-            day: 3,
-            month: 4,
-            year: 2010,
-          },
-          endDate: {
-            day: 19,
-            month: 3,
-            year: 2011,
-          },
-        },
-        {
-          bannerImage: null,
-          chapters: null,
-          description:
-            'Mobile Suit SD Gundam Mk. II delivers with more tongue-in-cheek humor than the first series. In "The Rolling Colony Affair," a colony is hosting a cabaret show featuring the girls of Gundam. But the show turns disastrous when men and mobile suits go crazy over the girls, sending the colony rolling out of control. A parody of the videogame RPG genre, "Gundam Legend" has Amuro, Kamille and Judau sent on a perilous quest to rescue the princess of the Zeta Kingdom from Char Aznable and his vicious Zeon MS forces.\n<br><br>\n(Source: Anime News Network)',
-          episodes: 3,
-          duration: 10,
-          title: {
-            english: null,
-            native: '機動戦士SDガンダム Mk-II',
-          },
-          genres: ['Mecha', 'Sci-Fi'],
-          startDate: {
-            day: 25,
-            month: 6,
-            year: 1989,
-          },
-          endDate: {
-            day: 25,
-            month: 6,
-            year: 1989,
+            native: 'ROAD OF NARUTO',
           },
         },
         {
           bannerImage:
-            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/1939-6ziUEXvT3MAW.jpg',
-          chapters: null,
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/1735.jpg',
           description:
-            "In 1990, Bandai produced the 4 episode OVA series SD Gundam Gaiden. Directed by Tetsuro Amino (Macross 7, SD Gundam's Counterattack), this series is set in the medieval fantasy world Suda Doaka. Once again, popular Gundam characters such as Amuro Ray and Char Aznable are featured in the series, along with fantasy-styled versions of well-known mobile suits. <br><br>\nIn this series, the heroic Knight Gundam and his companions must protect Suda Doaka from the evils of Satan Gundam and Sieg Zeon. Much of the series is set in the Kingdom of Lacroa, which is featured in several SD productions, including the 2003 TV series SD Gundam Force. As is the case with all the older SD productions, SD Gundam Gaiden isn't available in the U.S.<br><br>\n(Source: AniDB)",
-          episodes: 4,
-          duration: 30,
+            'Naruto: Shippuuden is the continuation of the original animated TV series Naruto. The story revolves around an older and slightly more matured Uzumaki Naruto and his quest to save his friend Uchiha Sasuke from the grips of the snake-like Shinobi, Orochimaru. After 2 and a half years Naruto finally returns to his village of Konoha, and sets about putting his ambitions to work, though it will not be easy, as he has amassed a few (more dangerous) enemies, in the likes of the shinobi organization; Akatsuki. <br><br>\n(Source: Anime News Network)',
+          id: 1735,
           title: {
-            english: null,
-            native: 'SDガンダム外伝',
+            english: 'Naruto: Shippuden',
+            native: 'NARUTO -ナルト- 疾風伝',
           },
-          genres: ['Adventure', 'Comedy', 'Fantasy', 'Mecha'],
-          startDate: {
-            day: 25,
-            month: 4,
-            year: 1990,
+        },
+        {
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/20-HHxhPj5JD13a.jpg',
+          description:
+            "Naruto Uzumaki, a hyperactive and knuckle-headed ninja, lives in Konohagakure, the Hidden Leaf village. Moments prior to his birth, a huge demon known as the Kyuubi, the Nine-tailed Fox, attacked Konohagakure and wreaked havoc. In order to put an end to the Kyuubi's rampage, the leader of the village, the 4th Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto. <br><br>\nShunned because of the presence of the Kyuubi inside him, Naruto struggles to find his place in the village. He strives to become the Hokage of Konohagakure, and he meets many friends and foes along the way. <br><br>\n(Source: MAL Rewrite)",
+          id: 20,
+          title: {
+            english: 'Naruto',
+            native: 'NARUTO -ナルト-',
           },
-          endDate: {
-            day: 21,
-            month: 4,
-            year: 1991,
+        },
+        {
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/16870-xz6KbaGC0jas.jpg',
+          description:
+            'The moon is beginning to fall, and at the rate it\'s going, it is doomed to fall on the Earth. The countdown for the survival of the planet begins. Among the havoc, Hinata\'s younger sister Hanabi is captured by the mysterious enemy, Toneri Ootsutsuki. Naruto must overcome great danger on a mission to save Hanabi and the world along with Hinata, Sai, Shikamaru, and Sakura is their final story. "The final story is a first love."\n<br><br>\n(Source: Anime News Network)',
+          id: 16870,
+          title: {
+            english: 'The Last: Naruto the Movie',
+            native: 'THE LAST -NARUTO THE MOVIE-',
+          },
+        },
+        {
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/13667-7Cpxg5sCOVpw.jpg',
+          description:
+            "Ten years ago, a gigantic demon beast known as the Nine-Tailed Demon Fox was released from its jinchuuriki by an unknown shinobi wearing a mask. The village of Konohagakure was close to destruction by the attack of the Nine-Tails, but the village was saved by its leader. Minato Namikaze and his wife Kushina Uzumaki&mdash;who was the jinchuuriki at the time of the attack&mdash;sealed away the demon inside their new born son: Naruto Uzumaki. However, this act of saving the village cost them their lives and they left the future of the ninja world to Naruto.<br><br>\nWith the demon fox sealed away, things continued as normal. However, the peace of the village would not last long, for Pain, Konan, Itachi Uchiha, Kisame Hoshigaki, Sasori, Deidara, Hidan and Kakuzu&mdash;members of a dreaded shinobi group called the Akatsuki&mdash;attacked Konohagakure. Naruto narrowly manages to launch a counter-attack but why have these shinobi appeared when all of them were meant to have died? The mystery remains, but the shinobi are praised by heir families for completing such a dangerous mission. However, one of them who has never known the faces of his parents, Naruto, cannot help but feel lonely. At that exact time, suddenly, the masked man makes his appearance in Konoha. Naruto and his allies are both attacked by the man's mysterious new doujutsu.<br><br>\n(Source: Naruto Wikia)",
+          id: 13667,
+          title: {
+            english: 'Road to Ninja: Naruto the Movie',
+            native: 'ROAD TO NINJA -NARUTO THE MOVIE-',
           },
         },
         {
           bannerImage: null,
-          chapters: null,
-          description: null,
-          episodes: 2,
-          duration: 14,
+          description:
+            'Original Anime will feature the "unbelievable appearance of a certain popular character." ',
+          id: 19511,
           title: {
             english: null,
-            native: '機動戦士SDガンダム Mk-IV',
-          },
-          genres: ['Mecha', 'Sci-Fi'],
-          startDate: {
-            day: 25,
-            month: 9,
-            year: 1990,
-          },
-          endDate: {
-            day: 25,
-            month: 9,
-            year: 1990,
+            native: 'NARUTO -ナルト- 疾風伝 サニー・サイド・バトル!!!',
           },
         },
         {
-          bannerImage: null,
-          chapters: null,
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/168139-xCucCM1ufIU1.jpg',
           description:
-            "There are 2 parts to this...<br><br>\nIn \"The Storm-Calling School Festival\", Char and Haman host a festival to celebrate the union between the Nu School for Boys and the Zeta School for Girls. But all hell breaks loose when the Counterattack School gang - led by Amuro, Judau and Kamille - rush in to crash the party.<br><br>\n'The Tale of the SD Warring States: The Chapter of the Violent Final Sky Castle' is the second part of  SD Gundam's Counterattack.",
-          episodes: 2,
-          duration: 12,
+            'Me, the same girl who hates all those prim and proper heroines, got reincarnated as the villain in the world of my favorite fantasy dating sim! It’s my dream come true, so I’m going to leave my mark on history by becoming the world’s greatest villain! But to do that, I’ll need to get a lot stronger, and smarter. Just one problem—the harder I try to be evil, the harder the prince falls for me! At this rate, will I ever get to earn my place in history!?\n<br><br>\n(Source: Yen Press)<br><br>\n\n<i>Note: The first episode was exclusively shown as a world premiere during the Anime Messe Babelsberg 2024 on July 20th 2024 as a part of a special Anime Panel.</i>',
+          id: 168139,
           title: {
-            english: "Mobile Suit SD Gundam's Counterattack",
-            native: '機動戦士ＳＤガンダムの逆襲',
-          },
-          genres: ['Comedy', 'Mecha'],
-          startDate: {
-            day: 15,
-            month: 7,
-            year: 1989,
-          },
-          endDate: {
-            day: 15,
-            month: 7,
-            year: 1989,
+            english: 'I’ll Become a Villainess Who Goes Down in History',
+            native: '歴史に残る悪女になるぞ',
           },
         },
         {
-          bannerImage: null,
-          chapters: null,
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/10589-s5r2dzqohuU7.jpg',
           description:
-            'The SD Character Flash Anime is a special addition to the anime series\' official website. Each "episode" features a different character, drawn in a super-deformed style, set to a song sung by the character\'s seiyuu.',
-          episodes: 16,
-          duration: 1,
+            "After being captured for attempting to assassinate the leader of Kumogakure, the Raikage, and killing Jounin from Kirigakure and Iwagakure, Naruto is imprisoned in Houzukijou, a criminal containment facility also known as the Blood Prison. <br><br>\nThe master of the castle, Mui, uses the ultimate imprisonment jutsu to steal power from the prisoners. In this place, something is aiming for Naruto's life. The battle to prove his innocence and uncover the truth has begun for Naruto and his friends.<br><br>\n(Source: AnimeAvenue)",
+          id: 10589,
           title: {
-            english: null,
-            native: 'スケットダンス SDキャラフラッシュアニメ',
+            english: 'Naruto Shippuden the Movie: Blood Prison',
+            native: '劇場版 NARUTO -ナルト- ブラッド・プリズン',
           },
-          genres: ['Comedy'],
-          startDate: {
-            day: 7,
-            month: 3,
-            year: 2011,
+        },
+        {
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/101830-Gj0fVRkzG14o.jpg',
+          description:
+            'Bundled with the 15th volume of the <i>Golden Kamuy</i> manga.<br><br>\n\n"Barato no Ugou" (Showdown in Barato) depicts the battle in Barato. Hijikata and Nagakura sides with the Hidoro clan and get information about the tattoed convicts in the city. On the other hand, Ogata joins Kusuda Umakichi and threatens the police chief to join his cause.<br><br>',
+          id: 101830,
+          title: {
+            english: 'Golden Kamuy OVA',
+            native: 'ゴールデンカムイOVA',
           },
-          endDate: {
-            day: 14,
-            month: 10,
-            year: 2011,
+        },
+        {
+          bannerImage:
+            'https://s4.anilist.co/file/anilistcdn/media/anime/banner/8246-FfSs0aXwJpPV.jpg',
+          description:
+            'Assigned on a mission to capture Mukade, a missing-nin, Naruto Uzumaki sets out for the once glorious historic ruins of "Ouran", where he pursues and corners the rogue ninja. Mukade\'s goal is revealed to be a dormant leyline within the ruins; he unleashes the power of the leyline, causing a light to envelop Naruto, sending him into the past, 20 years before the series began. When Naruto awakens, he comes into contact with the Fourth Hokage, Minato Namikaze.<br><br>\n(Source: Wikipedia) ',
+          id: 8246,
+          title: {
+            english: 'Naruto Shippuden the Movie: The Lost Tower',
+            native: '劇場版 NARUTO -ナルト- 疾風伝 ザ・ロストタワー',
           },
         },
       ],

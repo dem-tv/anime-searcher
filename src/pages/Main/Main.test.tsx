@@ -8,7 +8,6 @@ import {
   queryByRole,
   screen,
   queryByText,
-  render,
 } from '@testing-library/react';
 import '@testing-library/jest-dom/vitest';
 import Main from './Main.tsx';
@@ -17,8 +16,10 @@ import { setupServer } from 'msw/node';
 import { API_HOST } from '../../api/constants.ts';
 import { animeListMockResponse } from '../../__mocks__/animeList.ts';
 import { errorMockResponse } from '../../__mocks__/errorResponse.ts';
-import { renderWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
+import { getElementWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
 import { MemoryRouter, Route, Routes } from 'react-router';
+import { renderWithProviders } from '../../__test-utils__/renderWithProviders.tsx';
+import { ThemeProvider } from '../../components/ui/Theme/ThemeProvider.tsx';
 
 const successHandlers = [
   http.post(API_HOST, () => {
@@ -35,19 +36,45 @@ const errorHandlers = [
 const successServer = setupServer(...successHandlers);
 const errorServer = setupServer(...errorHandlers);
 
+function renderDefault(url?: string) {
+  return renderWithProviders(
+    getElementWithRouter(
+      <ThemeProvider>
+        <Main />
+      </ThemeProvider>,
+      url
+    )
+  );
+}
+
+function renderWithMemoryRoute(path: string) {
+  return renderWithProviders(
+    <ThemeProvider>
+      <MemoryRouter initialEntries={[path]}>
+        <Routes>
+          <Route path={'/'} element={<Main />}>
+            <Route path={':animeId'} element="child"></Route>
+          </Route>
+        </Routes>
+      </MemoryRouter>
+    </ThemeProvider>
+  );
+}
+
 describe('Main', () => {
   beforeEach(() => {
     cleanup();
   });
 
   it('Renders Main', () => {
-    const container = renderWithRouter(<Main />).container;
+    const container = renderDefault().container;
+
     expect(container).toBeInTheDocument();
   });
 
   it('Renders loader search', async () => {
     successServer.listen();
-    const container = renderWithRouter(<Main />).container;
+    const container = renderDefault().container;
 
     const buttonSearch = getByText(container, 'Explore anime!');
     const inputSearch = getByLabelText(container, 'Search');
@@ -65,7 +92,8 @@ describe('Main', () => {
 
   it('Renders list of anime on search', async () => {
     successServer.listen();
-    const container = renderWithRouter(<Main />).container;
+    const container = renderDefault().container;
+
     const buttonSearch = getByText(container, 'Explore anime!');
     const inputSearch = getByLabelText(container, 'Search');
 
@@ -87,7 +115,8 @@ describe('Main', () => {
   it('Doesnt render list of anime on first render when search isn`t set in localStorage', () => {
     localStorage.removeItem('search');
 
-    const container = renderWithRouter(<Main />).container;
+    const container = renderDefault().container;
+
     const placeholder = getByText(container, 'No results :(');
 
     expect(placeholder).toBeInTheDocument();
@@ -96,7 +125,8 @@ describe('Main', () => {
   it('Renders list of anime on first render when search is set in localStorage', async () => {
     successServer.listen();
     localStorage.setItem('search', JSON.stringify('naruto'));
-    const container = renderWithRouter(<Main />).container;
+
+    const container = renderDefault().container;
 
     const animeList = await vi.waitFor(() => {
       const list = queryByRole(container, 'list');
@@ -110,7 +140,9 @@ describe('Main', () => {
 
   it('Renders error text on error', async () => {
     errorServer.listen();
-    const container = renderWithRouter(<Main />).container;
+
+    const container = renderDefault().container;
+
     const buttonSearch = getByText(container, 'Explore anime!');
     const inputSearch = getByLabelText(container, 'Search');
 
@@ -132,15 +164,7 @@ describe('Main', () => {
   it('Renders back link when details is opened', async () => {
     successServer.listen();
 
-    render(
-      <MemoryRouter initialEntries={['/:aimeId']}>
-        <Routes>
-          <Route path={'/'} element={<Main />}>
-            <Route path={':animeId'} element="child"></Route>
-          </Route>
-        </Routes>
-      </MemoryRouter>
-    );
+    renderWithMemoryRoute('/:aimeId');
 
     const back = screen.getByLabelText('Collapse');
 
@@ -151,15 +175,7 @@ describe('Main', () => {
   it('Does`nt render back link when details is closed', async () => {
     successServer.listen();
 
-    render(
-      <MemoryRouter initialEntries={['/']}>
-        <Routes>
-          <Route path={'/'} element={<Main />}>
-            <Route path={':animeId'} element="child"></Route>
-          </Route>
-        </Routes>
-      </MemoryRouter>
-    );
+    renderWithMemoryRoute('/');
 
     const back = screen.queryByLabelText('Collapse');
 
@@ -171,7 +187,7 @@ describe('Main', () => {
     successServer.listen();
     localStorage.setItem('search', JSON.stringify('naruto'));
 
-    renderWithRouter(<Main />, '/?page=2');
+    renderDefault('/?page=2');
 
     const currentPage = await vi.waitFor(() => {
       const currentPage = screen.getByText('Current page: 2');
@@ -180,6 +196,57 @@ describe('Main', () => {
     });
 
     expect(currentPage).toBeInTheDocument();
+    successServer.close();
+  });
+});
+
+describe('Main.tsx - selection', () => {
+  it('Clicking on checkboxes selects and shows count', async () => {
+    successServer.listen();
+    localStorage.setItem('search', JSON.stringify('naruto'));
+
+    renderDefault();
+
+    await vi.waitFor(() => {
+      const list = screen.queryByRole('list');
+      expect(list).toBeTruthy();
+    });
+
+    screen
+      .getAllByRole('checkbox')
+      .slice(0, 5)
+      .forEach((checkbox) => {
+        fireEvent.click(checkbox);
+      });
+
+    const selectText = screen.getByText('Selected cards: 5');
+
+    expect(selectText).toBeInTheDocument();
+  });
+
+  it('After selection ang page changing shows selected cards', async () => {
+    fireEvent.click(screen.getByText('Next'));
+
+    const selectText = screen.getByText('Selected cards: 5');
+
+    expect(selectText).toBeInTheDocument();
+    successServer.close();
+  });
+
+  it('Adds link for download when items selected', async () => {
+    const downloadBtn = screen.getByRole('link', { name: 'Download' });
+
+    expect(downloadBtn).toHaveAttribute('href', 'mock-object-url');
+    expect(downloadBtn).toHaveAttribute('download', '5_items.csv');
+  });
+
+  it('Clicking on "Unselect all" unselects all cards', async () => {
+    const unselectBtn = screen.getByRole('button', { name: 'Unselect all' });
+    fireEvent.click(unselectBtn);
+
+    const selectText = screen.queryByText('Selected cards: 5');
+
+    expect(selectText).not.toBeInTheDocument();
     successServer.close();
   });
 });
