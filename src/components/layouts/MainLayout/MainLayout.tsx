@@ -36,7 +36,9 @@ export function MainLayout(props: Props) {
             <div className={'ml-auto'}>{props.closeElement}</div>
           )}
         </header>
-        <main className={' p-4 py-6 flex-1'}>{props.children}</main>
+        <main className={'p-4 py-6 flex-1 flex flex-col items-start gap-8'}>
+          {props.children}
+        </main>
         <footer
           className={'p-4 flex justify-center border-t dark:border-gray-800 '}
         >

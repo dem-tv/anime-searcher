@@ -1,48 +1,39 @@
 import { createPath, useLocation, useSearchParams } from 'react-router';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import type {
   AnimeListRequest,
   AnimeShort,
 } from '../../api/types/anime.types.ts';
-import { useFetchAnimeList } from '../../api/hooks/useFetchAnimeList.ts';
+import { animeListApi } from '../../store/api/animeList.ts';
+import { LS } from '../../utils/localStorage.ts';
 
 export function useGetList() {
   const { pathname } = useLocation();
-  const [params, setParams] = useSearchParams();
+  const [params] = useSearchParams();
 
   const currentPage = Number(params.get('page') || 1);
-  const [request, setRequest] = useState<AnimeListRequest>({
-    search: '',
-    page: currentPage,
-  });
+  const [searchValue, setSearchValue] = useState(LS.get('search') || '');
+
+  const request = useMemo<AnimeListRequest>(
+    () => ({
+      search: searchValue,
+      page: currentPage,
+    }),
+    [searchValue, currentPage]
+  );
+
+  const { data, isLoading, isFetching, refetch, isError } =
+    animeListApi.useGetAnimeListQuery(request);
 
   const searchPageLink = createPath({
     pathname: '/',
     search: `page=${params.get('page')}`,
   });
 
-  const { fetchAnimeList, animeList, pagination, loading, errorMessage } =
-    useFetchAnimeList();
+  const errorMessage = isError ? 'Error fetching list' : '';
 
-  async function onSearch(search: string, onMount: boolean) {
-    const newDto = {
-      ...request,
-      page: onMount ? currentPage : 1,
-      search,
-    };
-
-    if (!onMount) {
-      setParams({
-        page: '1',
-      });
-    }
-    setAnimeList(newDto);
-  }
-
-  async function setAnimeList(requestBody: AnimeListRequest) {
-    setRequest(requestBody);
-
-    await fetchAnimeList(requestBody);
+  async function onSearch(search: string) {
+    setSearchValue(search);
   }
 
   function getCardUrl(card: AnimeShort) {
@@ -59,25 +50,16 @@ export function useGetList() {
     });
   }
 
-  function onChangePagination(page: number) {
-    const newDto = {
-      ...request,
-      page,
-    };
-
-    setAnimeList(newDto);
-  }
-
   return {
     searchPageLink,
-    animeList,
-    pagination,
-    loading,
-    errorMessage,
+    animeList: data?.media || [],
+    pagination: data?.pageInfo || null,
+    isPending: isFetching || isLoading,
     onSearch,
     getCardUrl,
     getPagableUrl,
-    onChangePagination,
     currentPage,
+    refetch,
+    errorMessage,
   };
 }

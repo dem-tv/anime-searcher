@@ -6,9 +6,10 @@ import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { API_HOST } from '../../api/constants.ts';
 import { animeDetailedResponse } from '../../__mocks__/animeDetails.ts';
-import { renderWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
+import { getElementWithRouter } from '../../__test-utils__/renderWithRouter.tsx';
 import { AnimeDetails } from './AnimeDetails.tsx';
 import { errorMockResponse } from '../../__mocks__/errorResponse.ts';
+import { renderWithProviders } from '../../__test-utils__/renderWithProviders.tsx';
 
 const successHandlers = [
   http.post(API_HOST, () => {
@@ -22,6 +23,12 @@ const errorHandlers = [
   }),
 ];
 
+function renderDetails() {
+  return renderWithProviders(
+    getElementWithRouter(<AnimeDetails />, '/123', '/:animeId')
+  );
+}
+
 const successServer = setupServer(...successHandlers);
 const errorServer = setupServer(...errorHandlers);
 describe('AnimeDetails', () => {
@@ -29,11 +36,12 @@ describe('AnimeDetails', () => {
 
   it('Renders loader search', async () => {
     successServer.listen();
-    renderWithRouter(<AnimeDetails />, '/123', '/:animeId');
+    renderDetails();
 
     const loader = await vi.waitFor(() => {
       const list = screen.queryByTestId('page-loader');
       expect(list).toBeTruthy();
+
       return list;
     });
 
@@ -43,11 +51,12 @@ describe('AnimeDetails', () => {
 
   it('Renders details on response', async () => {
     successServer.listen();
-    renderWithRouter(<AnimeDetails />, '/123', '/:animeId');
+    renderDetails();
 
     const description = await vi.waitFor(() => {
       const description = screen.queryByText(/With Tomura Shigaraki/i);
       expect(description).toBeTruthy();
+
       return description;
     });
 
@@ -57,11 +66,12 @@ describe('AnimeDetails', () => {
 
   it('Renders error message', async () => {
     errorServer.listen();
-    renderWithRouter(<AnimeDetails />, '/123', '/:animeId');
+    renderDetails();
 
     const errorMessage = await vi.waitFor(() => {
-      const description = screen.queryByText('Error get response');
+      const description = screen.queryByText('Failed getting Anime');
       expect(description).toBeTruthy();
+
       return description;
     });
 

@@ -47,16 +47,12 @@ export type Anime = {
 };
 
 export type PageResponse<Media> = {
-  data: {
-    Page: {
-      pageInfo: Pagination;
-      media: Media[];
-    };
+  Page: {
+    pageInfo: Pagination;
+    media: Media[];
   };
 };
 
 export type MediaResponse<Media> = {
-  data: {
-    Media: Media;
-  };
+  Media: Media;
 };

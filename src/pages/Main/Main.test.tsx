@@ -112,16 +112,6 @@ describe('Main', () => {
     successServer.close();
   });
 
-  it('Doesnt render list of anime on first render when search isn`t set in localStorage', () => {
-    localStorage.removeItem('search');
-
-    const container = renderDefault().container;
-
-    const placeholder = getByText(container, 'No results :(');
-
-    expect(placeholder).toBeInTheDocument();
-  });
-
   it('Renders list of anime on first render when search is set in localStorage', async () => {
     successServer.listen();
     localStorage.setItem('search', JSON.stringify('naruto'));
@@ -152,7 +142,7 @@ describe('Main', () => {
     fireEvent.click(buttonSearch);
 
     const errorText = await vi.waitFor(() => {
-      const errorText = queryByText(container, 'Error get response');
+      const errorText = queryByText(container, 'Error fetching list');
       expect(errorText).toBeTruthy();
       return errorText;
     });

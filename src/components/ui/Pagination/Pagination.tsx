@@ -5,7 +5,7 @@ type Props = {
   currentPage: number;
   hasNext: boolean;
   paginationLink: (page: number) => string;
-  onChangePagination: (page: number) => void;
+  onChangePagination?: (page: number) => void;
 };
 
 export function Pagination(props: Props) {
@@ -16,8 +16,10 @@ export function Pagination(props: Props) {
   const prevLink = props.paginationLink(props.currentPage - 1);
   const nextLink = props.paginationLink(props.currentPage + 1);
 
-  const onClickPrev = () => props.onChangePagination(props.currentPage - 1);
-  const onClickNext = () => props.onChangePagination(props.currentPage + 1);
+  const onClickPrev = () =>
+    props.onChangePagination && props.onChangePagination(props.currentPage - 1);
+  const onClickNext = () =>
+    props.onChangePagination && props.onChangePagination(props.currentPage + 1);
 
   return (
     <div className={'flex gap-2 items-center'}>

@@ -29,7 +29,7 @@ export function PageList<ListItem>(props: Props<ListItem>) {
     return (
       <div
         className={
-          'max-w-7xl bg-neutral-300 m-auto flex flex-col gap-4 min-h-72 rounded-md items-center justify-center'
+          'max-w-7xl bg-neutral-300 m-auto flex flex-col gap-4 min-h-72 rounded-md items-center justify-center dark:bg-neutral-800'
         }
       >
         <p>No results :(</p>

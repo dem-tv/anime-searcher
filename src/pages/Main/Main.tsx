@@ -19,13 +19,13 @@ function Main() {
     searchPageLink,
     animeList,
     pagination,
-    loading,
+    isPending,
     errorMessage,
     onSearch,
     getCardUrl,
     getPagableUrl,
-    onChangePagination,
     currentPage,
+    refetch,
   } = useGetList();
 
   const {
@@ -73,29 +73,31 @@ function Main() {
       {errorMessage ? (
         errorMessage
       ) : (
-        <PageList
-          pagination={
-            pagination && (
-              <Pagination
-                hasNext={pagination.hasNextPage}
-                paginationLink={getPagableUrl}
-                currentPage={currentPage}
-                onChangePagination={onChangePagination}
-              />
-            )
-          }
-          list={animeList}
-          loading={loading}
-          renderItem={(item) => (
-            <SelectCard
-              onSelect={() => onSelectCard(item)}
-              selected={checkSelection(item)}
-            >
-              <AnimeCard to={getCardUrl(item)} anime={item} />
-            </SelectCard>
-          )}
-          itemKey="id"
-        />
+        <>
+          <Button onClick={refetch}>Reload list</Button>
+          <PageList
+            pagination={
+              pagination && (
+                <Pagination
+                  hasNext={pagination.hasNextPage}
+                  paginationLink={getPagableUrl}
+                  currentPage={currentPage}
+                />
+              )
+            }
+            list={animeList}
+            loading={isPending}
+            renderItem={(item) => (
+              <SelectCard
+                onSelect={() => onSelectCard(item)}
+                selected={checkSelection(item)}
+              >
+                <AnimeCard to={getCardUrl(item)} anime={item} />
+              </SelectCard>
+            )}
+            itemKey="id"
+          />
+        </>
       )}
     </MainLayout>
   );
