@@ -9,19 +9,28 @@ import { setupStore } from './store';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from './components/ui/Theme/ThemeProvider.tsx';
 
-const store = setupStore();
+function initApp() {
+  const store = setupStore();
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <ErrorBoundary>
-      <ThemeProvider>
-        <BrowserRouter>
-          <Provider store={store}>
-            <RouterConfiguration routes={routes} />
-          </Provider>
-        </BrowserRouter>
-      </ThemeProvider>
-    </ErrorBoundary>
-  </StrictMode>
-);
+  const root = document.getElementById('root');
+
+  if (!root) {
+    throw new Error('Unable to find root element');
+  }
+
+  createRoot(root).render(
+    <StrictMode>
+      <ErrorBoundary>
+        <ThemeProvider>
+          <BrowserRouter>
+            <Provider store={store}>
+              <RouterConfiguration routes={routes} />
+            </Provider>
+          </BrowserRouter>
+        </ThemeProvider>
+      </ErrorBoundary>
+    </StrictMode>
+  );
+}
+
+initApp();

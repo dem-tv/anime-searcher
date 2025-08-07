@@ -10,7 +10,7 @@ export default defineConfig({
       withTypes: true,
       inputDir: 'src/assets/icons',
       outputDir: 'public/icons',
-      typesOutputFile: 'src/types.ts/icons.ts',
+      typesOutputFile: 'src/types/icons.ts',
       formatter: 'biome',
       iconNameTransformer: (iconName) => iconName,
     }),

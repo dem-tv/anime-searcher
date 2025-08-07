@@ -14,7 +14,7 @@ export function useGetList() {
   const currentPage = Number(params.get('page') || 1);
   const [searchValue, setSearchValue] = useState(LS.get('search') || '');
 
-  const request = useMemo<AnimeListRequest>(
+  const requestBody = useMemo<AnimeListRequest>(
     () => ({
       search: searchValue,
       page: currentPage,
@@ -23,7 +23,7 @@ export function useGetList() {
   );
 
   const { data, isLoading, isFetching, refetch, isError } =
-    animeListApi.useGetAnimeListQuery(request);
+    animeListApi.useGetAnimeListQuery(requestBody);
 
   const searchPageLink = createPath({
     pathname: '/',
