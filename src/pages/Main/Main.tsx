@@ -1,0 +1,106 @@
+import { MainLayout } from '../../components/layouts/MainLayout/MainLayout.tsx';
+import { SearchForm } from '../../components/widgets/SearchForm/SearchForm.tsx';
+import { PageList } from '../../components/ui/PageList/PageList.tsx';
+import { AnimeCard } from '../../components/ui/AnimeCard/AnimeCard.tsx';
+import { NavLink, useOutlet } from 'react-router';
+import { Icon } from '../../components/ui/Icon/Icon.tsx';
+import { Pagination } from '../../components/ui/Pagination/Pagination.tsx';
+import { useGetList } from './useGetList.ts';
+import { useSelectCard } from './useSelectCard.ts';
+import { SelectCard } from '../../components/ui/SelectCard/SelectCard.tsx';
+import { SelectInfo } from '../../components/ui/SelectInfo/SelectInfo.tsx';
+import { Button } from '../../components/ui/Button/Button.tsx';
+import { Typography } from '../../components/ui/Typography/Typography.tsx';
+
+function Main() {
+  const detailsContent = useOutlet();
+
+  const {
+    searchPageLink,
+    animeList,
+    pagination,
+    isPending,
+    errorMessage,
+    onSearch,
+    getCardUrl,
+    getPagableUrl,
+    currentPage,
+    refetch,
+  } = useGetList();
+
+  const {
+    onSelectCard,
+    unselectAllCards,
+    hasSelectedCards,
+    selectedCardsTotalLabel,
+    checkSelection,
+    downloadLink,
+  } = useSelectCard();
+
+  return (
+    <MainLayout
+      sideContent={detailsContent}
+      headerContent={<SearchForm onSubmit={onSearch} />}
+      closeElement={
+        detailsContent && (
+          <NavLink aria-label={'Collapse'} to={searchPageLink}>
+            <Icon rotate="180" name="expand-left" />
+          </NavLink>
+        )
+      }
+      bottomContent={
+        hasSelectedCards && (
+          <SelectInfo
+            leftContent={
+              <Typography variant={'m'}>{selectedCardsTotalLabel}</Typography>
+            }
+            rightContent={
+              <>
+                <Button onClick={unselectAllCards}>Unselect all</Button>
+                <Button
+                  tag="a"
+                  href={downloadLink.url}
+                  download={downloadLink.fileName}
+                >
+                  Download
+                </Button>
+              </>
+            }
+          />
+        )
+      }
+    >
+      {errorMessage ? (
+        errorMessage
+      ) : (
+        <>
+          <Button onClick={refetch}>Reload list</Button>
+          <PageList
+            pagination={
+              pagination && (
+                <Pagination
+                  hasNext={pagination.hasNextPage}
+                  paginationLink={getPagableUrl}
+                  currentPage={currentPage}
+                />
+              )
+            }
+            list={animeList}
+            loading={isPending}
+            renderItem={(item) => (
+              <SelectCard
+                onSelect={() => onSelectCard(item)}
+                selected={checkSelection(item)}
+              >
+                <AnimeCard to={getCardUrl(item)} anime={item} />
+              </SelectCard>
+            )}
+            itemKey="id"
+          />
+        </>
+      )}
+    </MainLayout>
+  );
+}
+
+export default Main;

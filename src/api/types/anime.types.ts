@@ -12,25 +12,47 @@ export type MediaDate = {
   year: number;
 };
 
-export type Anime = {
+export type AnimeListRequest = {
+  search: string;
+  page: number;
+};
+
+export type AnimeShort = {
   bannerImage: string;
   description: string;
-  episodes: number;
-  duration: number;
+  id: number;
   title: {
-    english: string;
+    english: string | null;
+    native: string;
+  };
+};
+
+export type Anime = {
+  description: string;
+  title: {
+    english: string | null;
     native: string;
   };
   genres: string[];
   startDate: MediaDate;
   endDate: MediaDate;
+  coverImage: {
+    extraLarge: string;
+  };
+  trailer: {
+    id: string;
+    site: string;
+    thumbnail: string;
+  } | null;
 };
 
 export type PageResponse<Media> = {
-  data: {
-    Page: {
-      pageInfo: Pagination;
-      media: Media[];
-    };
+  Page: {
+    pageInfo: Pagination;
+    media: Media[];
   };
+};
+
+export type MediaResponse<Media> = {
+  Media: Media;
 };

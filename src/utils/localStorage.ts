@@ -1,7 +1,10 @@
-type LocalStorageKeys = 'search';
+import type { Theme } from '../components/ui/Theme/types.ts';
+
+type LocalStorageKeys = 'search' | 'theme';
 
 type LocalStorageData = {
   search: string;
+  theme: Theme;
 };
 
 export const LS = {
